@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <link rel="stylesheet" href="{% static 'custom.css' %}" type="text/css">
+
+</head>
+<body>
+  <h1>{{course_title|lower}}</h1>
+  <p>Today is: {{ current_date | date:"F j, Y" }}</p>
+
+  <h2>User Information</h2>
+  <p>Name: {{user.name}}</p>
+  <p>email: {{user.email}}</p>
+
+  <h2>Product price:</h2>
+  <p>${{product_price|floatformat:2}}</p>
+
+  <p>{{random_text|truncatechars:23}}</p>
+
+</body>
+</html>

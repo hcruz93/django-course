@@ -1,6 +1,17 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from datetime import datetime
 
 # Create your views here.
 def index(request):
-  return HttpResponse("Hello World")
+  context = {
+    'course_title': 'Django Course',
+    'current_date': datetime.now(),
+    'user': {
+      'name': 'Humberto Cruz',
+      'email': 'hum.alex@gmail.com',
+    },
+    'product_price': 199.93999,
+    'random_text': 'ahhhh ahhh bueno esta bieeeeen'
+  }
+  return render(request,"index.html",context)
+
