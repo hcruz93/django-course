@@ -3,15 +3,14 @@ from datetime import datetime
 
 # Create your views here.
 def index(request):
+  products = [
+    {'Name': 'Laptop', 'Price': 778.98},
+    {'Name': 'Smartphone', 'Price': 578.98},
+    {'Name': 'Headphones', 'Price': 52.98},
+    {'Name': 'Camera', 'Price': 89.98},
+  ]
   context = {
-    'course_title': 'Django Course',
-    'current_date': datetime.now(),
-    'user': {
-      'name': 'Humberto Cruz',
-      'email': 'hum.alex@gmail.com',
-    },
-    'product_price': 199.93999,
-    'random_text': 'ahhhh ahhh bueno esta bieeeeen'
+    'products': products,
   }
   return render(request,"index.html",context)
 
