@@ -1,0 +1,1 @@
+INSERT INTO "app_generalinfo" ("company_name", "location", "email", "phone", "open_hours", "video_url", "twitter_url", "facebook_url", "instagram_url", "linkedin_url") VALUES ('Samsung', 'asia', 'fghj@example.com', '8528525', NULL, NULL, NULL, NULL, NULL, NULL) RETURNING "app_generalinfo"."id"
