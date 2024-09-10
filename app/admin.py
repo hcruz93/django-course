@@ -1,8 +1,5 @@
 from django.contrib import admin
-from django.http import HttpRequest
-
-# Register your models here.
-from app.models import GeneralInfo #you call the model
+from app.models import GeneralInfo, Service #you call the model
 
 @admin.register(GeneralInfo)
 class GeneralInfoAdmin(admin.ModelAdmin):
@@ -15,16 +12,14 @@ class GeneralInfoAdmin(admin.ModelAdmin):
     'open_hours',
   ]
 
-# PERMITIR O BLOQUEAR AGREGAR ACTUALLIZAR O BORRAR UN REGISTRO
+@admin.register(Service)
+class ServiceAdmin(admin.ModelAdmin):
+  list_display = [
+    'title',
+    'description',
+  ]
 
-  #show to disable and permission
-  # def has_add_permission(self, request, obj=None):
-  #   return False
+  search_fields = [
+    'title',
+  ]
 
-  #show to disable updated permissions
-  # def has_change_permission(self, request, obj=None):
-  #   return False
-  
-  # show to disable deleted permission
-  # def has_delete_permission(self, request, obj=None):
-  #   return False
