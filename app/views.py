@@ -1,9 +1,10 @@
 from django.shortcuts import render
-from app.models import GeneralInfo
+from app.models import GeneralInfo , Service
 
 # Create your views here.
 def index(request):
   general_info = GeneralInfo.objects.first()
+  services = Service.objects.all() # you bring all the services
 
   contex = {
     "company_name": general_info.company_name,
@@ -15,6 +16,8 @@ def index(request):
     "facebook_url": general_info.facebook_url,
     "instagram_url": general_info.instagram_url,
     "linkedin_url": general_info.linkedin_url,
+
+    "services" : services,
   }
 
   return render (request, "index.html",contex) 
