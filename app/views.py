@@ -1,11 +1,12 @@
 from django.shortcuts import render
-from app.models import GeneralInfo , Service, Testimonial
+from app.models import GeneralInfo , Service, Testimonial, FrequentlyAskedQuestion
 
 # Create your views here.
 def index(request):
   general_info = GeneralInfo.objects.first()
   services = Service.objects.all() # you bring all the services
   testimonials = Testimonial.objects.all()
+  faqs = FrequentlyAskedQuestion.objects.all()
 
   contex = {
     "company_name": general_info.company_name,
@@ -20,6 +21,7 @@ def index(request):
 
     "services" : services,
     "testimonials" : testimonials,
+    "faqs": faqs,
   }
 
   return render (request, "index.html",contex) 
