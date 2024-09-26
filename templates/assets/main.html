@@ -40,6 +40,14 @@
 
 <body>
 
+  {% for message in messages %}
+    {% if message.tags == "error" %}
+      <h1 style="color: red;"> Error: {{message}}</h1>
+    {% else %}
+      <h1 style="color: green;"> Success: {{message}}</h1>
+    {% endif %}
+  {% endfor %}
+
   {% include 'assets/header.html'%}
 
   <!-- ======= Hero Section ======= -->
