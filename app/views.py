@@ -1,7 +1,13 @@
 from django.shortcuts import render, redirect
 from django.core.mail import send_mail
 from django.conf import settings
-from app.models import GeneralInfo , Service, Testimonial, FrequentlyAskedQuestion
+from django.template.loader import render_to_string
+from app.models import (
+  GeneralInfo , 
+  Service, 
+  Testimonial, 
+  FrequentlyAskedQuestion,
+  )
 
 # Create your views here.
 def index(request):
@@ -30,6 +36,7 @@ def index(request):
 
 
 def contact_form (request):
+
   if request.method == 'POST':
     print("\nformulario enviado\n")
   
@@ -38,12 +45,22 @@ def contact_form (request):
     subject = request.POST.get('subject')
     message = request.POST.get('message')
 
+    context = {
+      "name": name,
+      "email": email,
+      "subject": subject,
+      "message": message, 
+    }
+    
+    html_content = render_to_string('email.html',context) # view de name, subject etc. in email.html
+
     send_mail(
       subject=subject,
-      message= f"{name}-{email}-{message}",
+      message= None,
+      html_message= html_content,
       from_email=settings.EMAIL_HOST_USER,
       recipient_list=[settings.EMAIL_HOST_USER],
-      fail_silently= False,
+      fail_silently= False, #default is true
 
     )
 
