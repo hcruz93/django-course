@@ -42,10 +42,13 @@
 
   {% for message in messages %}
     {% if message.tags == "error" %}
-      <h1 style="color: red;"> Error: {{message}}</h1>
+      <div div class="alert alert-danger alert-dismissible fade show sticky-alert" role="alert">
     {% else %}
-      <h1 style="color: green;"> Success: {{message}}</h1>
+      <div div class="alert alert-success alert-dismissible fade show sticky-alert" role="alert">
     {% endif %}
+    {{ message }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
   {% endfor %}
 
   {% include 'assets/header.html'%}
@@ -99,5 +102,15 @@
   <script src="{% static 'assets/js/main.js' %}"></script>
 
 </body>
+
+
+<style>
+  .sticky-alert {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+</style>
 
 </html>
