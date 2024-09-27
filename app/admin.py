@@ -4,6 +4,7 @@ from app.models import (
   Service, 
   Testimonial, 
   FrequentlyAskedQuestion,
+  ContactFormLog,
   ) #you call the model
 
 @admin.register(GeneralInfo)
@@ -47,3 +48,13 @@ class FrequentlyAskedQuestionAdmin(admin.ModelAdmin):
   'question',
   'answer',
 ]
+  
+@admin.register(ContactFormLog)
+class ContactFormLogAdmin(admin.ModelAdmin):
+
+  list_display = [
+    'email',
+    'is_succes',
+    'is_error',
+    'action_time',
+  ]
