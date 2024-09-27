@@ -18,6 +18,20 @@ class GeneralInfoAdmin(admin.ModelAdmin):
     'open_hours',
   ]
 
+# # show to disable add permission
+# def has_add_permission(self, request, obj=None):
+#     return False
+
+# # show to disable update permission
+# def has_change_permission(self, request, obj=None):
+#     return False
+
+# # show to disable delete permission
+# def has_delete_permission(self, request, obj=None):
+#     return False
+
+# show you can set field to disable update
+
 @admin.register(Service)
 class ServiceAdmin(admin.ModelAdmin):
   list_display = [
@@ -54,7 +68,16 @@ class ContactFormLogAdmin(admin.ModelAdmin):
 
   list_display = [
     'email',
-    'is_succes',
+    'is_success',
     'is_error',
     'action_time',
   ]
+# esta parte es para evitar modificar la seccion de logs descomenta para quitar permisos
+  # def has_add_permission(self, request, obj=None):
+  #       return False
+
+  # def has_change_permission(self, request, obj=None):
+  #       return False
+
+  # def has_delete_permission(self, request, obj=None):
+  #       return False

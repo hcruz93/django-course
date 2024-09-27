@@ -3,11 +3,13 @@ from django.core.mail import send_mail
 from django.conf import settings
 from django.template.loader import render_to_string
 from django.contrib import messages
+from django.utils import timezone
 from app.models import (
   GeneralInfo , 
   Service, 
   Testimonial, 
   FrequentlyAskedQuestion,
+  ContactFormLog,
   )
 
 # Create your views here.
@@ -54,21 +56,40 @@ def contact_form (request):
     }
     
     html_content = render_to_string('email.html',context) # view de name, subject etc. in email.html
+    
+    is_success = False
+    is_error = False
+    error_message = ""
 
     try:
       send_mail(
         subject=subject,
         message= None,
         html_message= html_content,
-        from_email=settings.EMAIL_HOST_USER,
+        from_email=settings.EMAIL_HOST_USER, #comenta para la prueba de error
         recipient_list=[settings.EMAIL_HOST_USER],
         fail_silently= False, #default is true
 
       )
     except Exception as e:
+      is_error = True
+      error_message = str(e)
       messages.error(request,"There is an error, could not send a email")
     else:
+      is_success = True
       messages.success(request,"Email has been sent")
+
+    ContactFormLog.objects.create(
+      name=name,
+      email=email,
+      subject=subject,
+      message=message,
+      action_time=timezone.now(),
+      is_success=is_success,
+      is_error=is_error,
+      error_message=error_message,
+
+    )
 
   return redirect('home')
 
