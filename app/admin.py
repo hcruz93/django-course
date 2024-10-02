@@ -6,6 +6,7 @@ from app.models import (
   FrequentlyAskedQuestion,
   ContactFormLog,
   Blog,
+  Author,
   ) #you call the model
 
 @admin.register(GeneralInfo)
@@ -83,8 +84,14 @@ class ContactFormLogAdmin(admin.ModelAdmin):
   # def has_delete_permission(self, request, obj=None):
   #       return False
 
+@admin.register(Author)
+class AuthorAdmin(admin.ModelAdmin):
 
-
+    # displays selected fields
+    list_display = [
+        'first_name',
+        'last_name',
+    ]
 @admin.register(Blog)
 class BlogAdmin(admin.ModelAdmin):
 
