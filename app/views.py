@@ -10,6 +10,7 @@ from app.models import (
   Testimonial, 
   FrequentlyAskedQuestion,
   ContactFormLog,
+  Blog,
   )
 
 # Create your views here.
@@ -18,6 +19,15 @@ def index(request):
   services = Service.objects.all() # you bring all the services
   testimonials = Testimonial.objects.all()
   faqs = FrequentlyAskedQuestion.objects.all()
+  
+  recent_blogs = Blog.objects.all().order_by("-created_at")[:3]
+  for blog in recent_blogs:
+    print(f"blog : {blog}")
+    print(f"blog.created_at : {blog.created_at}")
+    print(f"blog.author : {blog.author}")
+    print(f"Blog.author.last_name : {blog.author.last_name}")
+    print("")
+
 
   contex = {
     "company_name": general_info.company_name,

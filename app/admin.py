@@ -97,6 +97,7 @@ class BlogAdmin(admin.ModelAdmin):
 
   list_display = [
     'category',
+    'author',
     'title',
     'blog_image',
     'created_at',
