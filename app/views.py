@@ -43,6 +43,7 @@ def index(request):
     "services" : services,
     "testimonials" : testimonials,
     "faqs": faqs,
+    "recent_blogs": recent_blogs,
   }
 
   return render (request, "index.html",contex) 
