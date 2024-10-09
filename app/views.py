@@ -104,3 +104,13 @@ def contact_form (request):
 
   return redirect('home')
 
+def blog_detail(request, blog_id):
+  blog = Blog.objects.get(id=blog_id)
+
+  contex = {
+    "blog": blog,
+  }
+
+  return render (request, "blog_details.html",contex) 
+
+
