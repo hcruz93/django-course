@@ -120,7 +120,8 @@ def blog_detail(request, blog_id):
 def blogs (request):
 
   all_blogs = Blog.objects.all().order_by("-created_at")
-  paginator = Paginator(all_blogs,3)
+  blogs_per_page = 1
+  paginator = Paginator(all_blogs,blogs_per_page)
 
   print (f"paginator.num_pages: {paginator.num_pages}")
 

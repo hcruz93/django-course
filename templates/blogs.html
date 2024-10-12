@@ -65,9 +65,19 @@
 
         <div class="blog-pagination">
           <ul class="justify-content-center">
-            <li class="active"><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
+
+            {% if blogs.has_previous %}
+              <li><a href="?page={{ blogs.previous_page_number }}">pervious</a></li>
+            {% endif %}
+
+            <span class="current">
+                <li class="active"><a href="#">{{blogs.number}}</a></li>
+            </span>
+
+            {% if blogs.has_next %}
+              <li><a href="?page={{ blogs.next_page_number }}">next</a></li>
+            {% endif %}
+
           </ul>
         </div><!-- End blog pagination -->
 
