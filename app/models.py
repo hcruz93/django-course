@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from ckeditor.fields import RichTextField
 
 class GeneralInfo(models.Model):
   company_name = models.CharField(max_length= 255, default= "company")
@@ -80,7 +81,7 @@ class Blog(models.Model):
   # on_delete=models.PROTECT - if deleting the author, django will not allow that if the author has blogs
   # on_delete=models.SET_NULL - if deleting the author, django will make author column as blank (requires to have null=True & blank=True attributes on author column)
   created_at = models.DateTimeField(default=timezone.now)
-  content = models.TextField()
+  content = RichTextField() #models.TextField()
 
   def __str__(self):
     return self.title
