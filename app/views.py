@@ -74,7 +74,7 @@ def contact_form (request):
         subject=subject,
         message= None,
         html_message= html_content,
-        from_email=settings.EMAIL_HOST_USER, #comenta para la prueba de error
+        # from_email=settings.EMAIL_HOST_USER, #comenta para la prueba de error
         recipient_list=[settings.EMAIL_HOST_USER],
         fail_silently= False, #default is true
 
@@ -86,6 +86,7 @@ def contact_form (request):
     else:
       is_success = True
       messages.success(request,"Email has been sent")
+      print("\nformulario enviado {{ }}\n")
 
     ContactFormLog.objects.create(
       name=name,

@@ -59,7 +59,7 @@ class ContactFormLog(models.Model):
   action_time = models.DateTimeField(null= True, blank= True)
   is_success = models.BooleanField(default=False)
   is_error = models.BooleanField(default=False)
-  joined_at = models.DateTimeField(null= True, blank= True)
+  error_message = models.TextField(null=True, blank=True)
 
   def __str__(self):
     return self.email
@@ -67,7 +67,7 @@ class Author(models.Model):
   first_name = models.CharField(max_length=50)
   last_name = models.CharField(max_length=50, null=True, blank=True)
   country = models.CharField(max_length=50)
-  created_at = models.DateTimeField(default=timezone.now)
+  joined_at = models.DateTimeField(null= True, blank= True)
 
   def __str__(self):
     return self.first_name
